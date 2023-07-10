@@ -3,26 +3,26 @@ const morgan = require("morgan");
 const app = express();
 const port = 3001;
 
+// middleware
 app.use(morgan("dev"));
+
+const isLoggedIn = (req, res, next) => {
+  const isLogin = false;
+  if (isLogin) {
+    next();
+  } else {
+    return res.status(401).send({ message: "please login first" });
+  }
+};
 
 app.get("/test", (req, res) => {
   res.status(200).send({
     message: "API is working fine!",
   });
 });
-app.delete("/test", (req, res) => {
+app.get("/api/user", isLoggedIn, (req, res) => {
   res.status(200).send({
-    message: "DELETE: API is working fine!",
-  });
-});
-app.post("/test", (req, res) => {
-  res.status(200).send({
-    message: "POST: API is working fine!",
-  });
-});
-app.put("/test", (req, res) => {
-  res.status(200).send({
-    message: "PUT: API is working fine!",
+    message: "user profile is returned",
   });
 });
 
