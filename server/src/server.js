@@ -10,6 +10,21 @@ app.get("/test", (req, res) => {
     message: "API is working fine!",
   });
 });
+app.delete("/test", (req, res) => {
+  res.status(200).send({
+    message: "DELETE: API is working fine!",
+  });
+});
+app.post("/test", (req, res) => {
+  res.status(200).send({
+    message: "POST: API is working fine!",
+  });
+});
+app.put("/test", (req, res) => {
+  res.status(200).send({
+    message: "PUT: API is working fine!",
+  });
+});
 
 app.listen(port, () => {
   console.log(`E commerce mern server is running on port ${port}`);
